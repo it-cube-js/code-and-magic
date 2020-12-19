@@ -178,16 +178,12 @@
 
 
     const fireballSize = 22;
-
-
     const wizardSpeed = 3;
     const wizardWidth = 70;
-
     const getWizardHeight = function() {
       const height = wizardWidth * 1.337;
       return height;
     }
-
 
     const getFireballSpeed = function(value) {
       if (value == true) {
@@ -198,11 +194,11 @@
     }
 
     const getWizardX = function(width){
-      return width / 2 - wizardWidth/2;
+      return width / 2 - wizardWidth / 2;
     }
 
     const getWizardY = function(height){
-      return height / 3;
+      return height / 3 * 2 - getWizardHeight / 2;
     }
 
   </script>
