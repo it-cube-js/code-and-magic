@@ -173,8 +173,6 @@
     </div>
   </template>
 
-  const *имя чего-то* = *нужное число*;
-
 
 
 
@@ -182,15 +180,16 @@
 
 
   <script>
-    const fireballSize = 22;
+    const fireballSize  = 22;
     const wizardSpeed = 3;
     const wizardWidth = 70;
+
     const getWizardHeight = function() {
       const height = wizardWidth * 1.337;
       return height;
     }
 
-    const getFireballSpeed = function(value) {
+    const getFireballSpeed  = function(value) {
       if (value == true) {
         return 5;
       } else {
@@ -203,10 +202,11 @@
     }
 
     const getWizardY = function(height){
-      return height / 3 * 2 - getWizardHeight / 2;
+      return height / 3;
     }
 
   </script>
+  <script src="js/stat.js"></script>
   <script src="js/game.js"></script>
 </body>
 
