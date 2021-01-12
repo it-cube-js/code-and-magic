@@ -34,16 +34,22 @@ window.renderStatistics = function(ctx, names, times) {
   render_cloud(ctx);
   render_vitory_text(ctx);
 
-  const column_start_y = cloud_y + column_height - 20;
   const column_start_x = cloud_x;
+  const column_start_y = cloud_y + cloud_height - 20;
+
 
   for (let i = 0; names.length > i ; i++){
-    const text_x = column_start_x + cloud_gap * (i + 1) + column_width * i;
-    ctx.fillText(names[i], text_x, column_start_y);
-
-    const rect_y = column_start_y - text_size - column_height;
+    const text_x = column_start_x + column_gap * (i + 1) + column_width * i;
+    const text_y = column_start_y;
+    ctx.fillText(names[i], text_x, text_y);
     const rect_x = text_x;
-    ctx.fillRect(rect_x, rect_y, column_width, cloud_height)
+    const rect_y = column_start_y - text_size - column_height;
+    ctx.fillRect(rect_x, rect_y, column_width, column_height);
+
+    const time_x = rect_x;
+    const time_y = rect_y - text_size;
+    ctx.fillText = (times[i], time_x.Math.floor , times_y.Math.floor )
+
   };
 };
 
