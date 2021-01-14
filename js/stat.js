@@ -30,26 +30,43 @@ const render_vitory_text = function(ctx) {
   ctx.fillText("Список результатов:", text_x, text_y + text_gap * 2);
 };
 
-window.renderStatistics = function(ctx, names, times) {
-  render_cloud(ctx);
-  render_vitory_text(ctx);
 
+
+const render_column = function(ctx, names, times) {
   const column_start_x = cloud_x;
   const column_start_y = cloud_y + cloud_height - 20;
-
-
   for (let i = 0; names.length > i ; i++){
     const text_x = column_start_x + column_gap * (i + 1) + column_width * i;
     const text_y = column_start_y;
     ctx.fillText(names[i], text_x, text_y);
+
+    if (names[i] == 'Вы') {
+      ctx.fillStyle = 'red';
+    } else {
+      ctx.fillStyle = 'blue';
+    }
+
     const rect_x = text_x;
     const rect_y = column_start_y - text_size - column_height;
     ctx.fillRect(rect_x, rect_y, column_width, column_height);
 
+    ctx.fillStyle = 'black';
     const time_x = rect_x;
-    const time_y = rect_y - text_size;
-    ctx.fillText = (times[i], time_x.Math.floor , times_y.Math.floor )
-
+    const time_y = rect_y - text_size / 2;
+    times[i] = Math.floor(times[i])
+    ctx.fillText(times[i], time_x, time_y);
   };
+}
+
+
+
+window.renderStatistics = function(ctx, names, times) {
+  render_cloud(ctx);
+  render_vitory_text(ctx);
+  render_column(ctx, names, times);
+
 };
+
+
+
 
