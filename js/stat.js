@@ -12,6 +12,12 @@ const column_height = 150;
 const column_width = 40;
 const column_gap = 50;
 
+window.renderStatistics = function(ctx, names, times) {
+  render_cloud(ctx);
+  render_vitory_text(ctx);
+  render_column(ctx, names, times);
+
+};
 
 const render_cloud = function(ctx) {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
@@ -30,7 +36,10 @@ const render_vitory_text = function(ctx) {
   ctx.fillText("Список результатов:", text_x, text_y + text_gap * 2);
 };
 
-
+function random_integer(min, max) {
+  let rand = min - 0.5 + Math.random() * (max - min + 1);
+  return Math.round(rand);
+}
 
 const render_column = function(ctx, names, times) {
   const column_start_x = cloud_x;
@@ -41,9 +50,9 @@ const render_column = function(ctx, names, times) {
     ctx.fillText(names[i], text_x, text_y);
 
     if (names[i] == 'Вы') {
-      ctx.fillStyle = 'red';
+      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = 'blue';
+      ctx.fillStyle = 'hsl(240, ' + random_integer(1, 100) + '%, 50%)';
     }
 
     const rect_x = text_x;
@@ -60,12 +69,7 @@ const render_column = function(ctx, names, times) {
 
 
 
-window.renderStatistics = function(ctx, names, times) {
-  render_cloud(ctx);
-  render_vitory_text(ctx);
-  render_column(ctx, names, times);
 
-};
 
 
 
