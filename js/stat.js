@@ -57,7 +57,7 @@ const render_column = function(ctx, names, times) {
       ctx.fillStyle = 'hsl(240, ' + random_integer(1, 100) + '%, 50%)';
     }
 
-    column_number_height = column_height / big_players_times(times) * times[i];
+    column_number_height = column_height / get_max_value(times) * times[i];
 
     const rect_x = text_x;
     const rect_y = column_start_y - text_size - column_number_height;
@@ -71,12 +71,14 @@ const render_column = function(ctx, names, times) {
   };
 }
 
-const big_players_times = function(times){
-  let max = times[0];
-for (let i = 0; i < times.length; i++) {
 
-  if (max < times[i]) {
-    max = times[i];
+//getMaxValue
+const get_max_value = function(value){
+  let max = value[0];
+for (let i = 0; i < value.length; i++) {
+
+  if (max < value[i]) {
+    max = value[i];
   }
 }
 return max;
