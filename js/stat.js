@@ -44,6 +44,8 @@ function random_integer(min, max) {
 const render_column = function(ctx, names, times) {
   const column_start_x = cloud_x;
   const column_start_y = cloud_y + cloud_height - 20;
+
+
   for (let i = 0; names.length > i ; i++){
     const text_x = column_start_x + column_gap * (i + 1) + column_width * i;
     const text_y = column_start_y;
@@ -55,9 +57,11 @@ const render_column = function(ctx, names, times) {
       ctx.fillStyle = 'hsl(240, ' + random_integer(1, 100) + '%, 50%)';
     }
 
+    column_number_height = column_height / big_players_times(times) * times[i];
+
     const rect_x = text_x;
-    const rect_y = column_start_y - text_size - column_height;
-    ctx.fillRect(rect_x, rect_y, column_width, column_height);
+    const rect_y = column_start_y - text_size - column_number_height;
+    ctx.fillRect(rect_x, rect_y, column_width, column_number_height);
 
     ctx.fillStyle = 'black';
     const time_x = rect_x;
@@ -67,9 +71,16 @@ const render_column = function(ctx, names, times) {
   };
 }
 
+const big_players_times = function(times){
+  let max = times[0];
+for (let i = 0; i < times.length; i++) {
 
-
-
+  if (max < times[i]) {
+    max = times[i];
+  }
+}
+return max;
+}
 
 
 
