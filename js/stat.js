@@ -5,6 +5,7 @@ const cloud_x = 100;
 const cloud_y = 10;
 const cloud_gap = 10;
 
+
 const text_size = 16;
 const text_gap = 10;
 
