@@ -22,12 +22,13 @@ const generateWizards = function(numb) {
   }
   return arr;
 }
+const setupSimilar = document.querySelector('.setup-similar').classList.remove("hidden");
 
-
-
-console.log(generateWizards(4));
-
-// namesWizard[random_integer(1, namesWizard.length - 1)]
-
+// console.log(generateWizards(4));
+const drawParametersWizard = function(options){
+const nameWizard =  document.querySelector('.setup-similar-label');
+nameWizard.textContent = options().name;
+}
+drawParametersWizard(generateWizard()/*, ctx*/);
 
 
