@@ -24,11 +24,20 @@ const generateWizards = function(numb) {
 }
 const setupSimilar = document.querySelector('.setup-similar').classList.remove("hidden");
 
-// console.log(generateWizards(4));
-// const drawParametersWizard = function(options){
-const nameWizard =  document.querySelector('.setup-similar-label');
-nameWizard.textContent = "generateWizard().name";
-// }
-// drawParametersWizard(generateWizard()/*, ctx*/);
 
 
+const template = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+const similarList = document.querySelector('.setup-similar-list');
+
+const getWizardsForPlayer = function(generate) {
+
+  for(let i = 0; i < generate.length; i++){
+    const wizard = template.cloneNode(true);
+    wizard.querySelector('.setup-similar-label').textContent = generate[i].name;
+    wizard.querySelector('.wizard-coat').style.fill = generate[i].coatColor;
+    wizard.querySelector('.wizard-eyes').style.fill = generate[i].eyesColor;
+    similarList.appendChild(wizard);
+  }
+
+}
+console.log(getWizardsForPlayer(generateWizards(4)));
