@@ -25,10 +25,10 @@ const generateWizards = function(numb) {
 const setupSimilar = document.querySelector('.setup-similar').classList.remove("hidden");
 
 // console.log(generateWizards(4));
-const drawParametersWizard = function(options){
+// const drawParametersWizard = function(options){
 const nameWizard =  document.querySelector('.setup-similar-label');
-nameWizard.textContent = options().name;
-}
-drawParametersWizard(generateWizard()/*, ctx*/);
+nameWizard.textContent = "generateWizard().name";
+// }
+// drawParametersWizard(generateWizard()/*, ctx*/);
 
 
