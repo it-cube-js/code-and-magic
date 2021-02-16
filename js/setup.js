@@ -1,4 +1,4 @@
-const setup = document.querySelector('.setup').classList.remove("hidden");
+const setup = document.querySelector('.setup');
 const namesWizard = ['Иван', 'Хуан', 'Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 const surnames = [ 'да Марья',  'Верон',  'Мирабелла',  'Вальц',  'Онопко',  'Топольницкая',  'Нионго',  'Ирвинг'];
 const coatColors = ['rgb(101, 137, 164)',  'rgb(241, 43, 107)',  'rgb(146, 100, 161)',  'rgb(56, 159, 117)',  'rgb(215, 210, 55)',  'rgb(0, 0, 0)'];
@@ -41,3 +41,13 @@ const getWizardsForPlayer = function(generate) {
 
 }
 console.log(getWizardsForPlayer(generateWizards(4)));
+
+const setupOpen = document.querySelector('.setup-open');
+setupOpen.addEventListener('click', function () {
+  setup.classList.remove("hidden");
+});
+
+const setupClose = document.querySelector('.setup-close');
+setupClose.addEventListener('click', function () {
+  setup.classList.add("hidden");
+});
