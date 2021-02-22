@@ -5,7 +5,6 @@ const cloud_x = 100;
 const cloud_y = 10;
 const cloud_gap = 10;
 
-
 const text_size = 16;
 const text_gap = 10;
 
@@ -46,17 +45,16 @@ const render_column = function(ctx, names, times) {
   const column_start_x = cloud_x;
   const column_start_y = cloud_y + cloud_height - 20;
 
-
   for (let i = 0; names.length > i ; i++){
     const text_x = column_start_x + column_gap * (i + 1) + column_width * i;
     const text_y = column_start_y;
     ctx.fillText(names[i], text_x, text_y);
 
-    if (names[i] == 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else {
-      ctx.fillStyle = 'hsl(240, ' + random_integer(1, 100) + '%, 50%)';
-    }
+      if (names[i] == 'Вы') {
+        ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+      } else {
+        ctx.fillStyle = 'hsl(240, ' + random_integer(1, 100) + '%, 50%)';
+      }
 
     column_number_height = column_height / get_max_value(times) * times[i];
 

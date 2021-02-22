@@ -51,3 +51,31 @@ const setupClose = document.querySelector('.setup-close');
 setupClose.addEventListener('click', function () {
   setup.classList.add("hidden");
 });
+
+const setupUserName = document.querySelector('.setup-user-name');
+const setupSubmit = document.querySelector('.setup-submit');
+setupUserName.oninput = function (){
+  const userName = setupUserName.value.length;
+  if (userName <= 2 || userName >= 25) {
+    setupSubmit.disabled = true;
+  } else {
+    setupSubmit.disabled = false;
+  }
+
+}
+
+
+
+// setupClose.addEventListener('focus, keydown', function(evt) {
+
+//     if (evt.keyCode === 13 && setupClose.focus) {
+//       setup.classList.add("hidden");
+//     }
+
+// });
+ // setuoClose.addEventListener('keydown', function(evt) {
+
+//   if (evt.keyCode === 27) {
+
+//   }
+// });
