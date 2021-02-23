@@ -60,17 +60,20 @@ setupUserName.oninput = function (){
   }
 
 };
-// if (evt.code === "Enter" && setupClose == setupClose.activeElement ) {
-//   setup.classList.add("hidden");
-// } else {
-//   console.log('gfgf')
-// }
-document.addEventListener('keydown', function() {
-  setupClose.addEventListener('focus', function(evt){
-    if (evt.code === "Enter") {
-        setup.classList.add("hidden");
-      }
-  })
+// setupClose.addEventListener('focus', function(evt){
+//   if (evt.code === "Enter") {
+//       setup.classList.add("hidden");
+//     }
+// })
+setupClose.setAttribute('tabindex', 1)
+
+
+document.addEventListener('keydown', function(evt) {
+  if (evt.code === "Enter" && setupClose == setupClose.focus() ) {
+    setup.classList.add("hidden");
+  } else {
+    console.log('gfgf')
+  }
 });
 
 
