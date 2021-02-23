@@ -24,8 +24,6 @@ const generateWizards = function(numb) {
 }
 const setupSimilar = document.querySelector('.setup-similar').classList.remove("hidden");
 
-
-
 const template = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 const similarList = document.querySelector('.setup-similar-list');
 
@@ -38,8 +36,7 @@ const getWizardsForPlayer = function(generate) {
     wizard.querySelector('.wizard-eyes').style.fill = generate[i].eyesColor;
     similarList.appendChild(wizard);
   }
-
-}
+};
 console.log(getWizardsForPlayer(generateWizards(4)));
 
 const setupOpen = document.querySelector('.setup-open');
@@ -62,20 +59,43 @@ setupUserName.oninput = function (){
     setupSubmit.disabled = false;
   }
 
-}
+};
+// if (evt.code === "Enter" && setupClose == setupClose.activeElement ) {
+//   setup.classList.add("hidden");
+// } else {
+//   console.log('gfgf')
+// }
+document.addEventListener('keydown', function() {
+  setupClose.addEventListener('focus', function(evt){
+    if (evt.code === "Enter") {
+        setup.classList.add("hidden");
+      }
+  })
+});
 
 
-
-// setupClose.addEventListener('focus, keydown', function(evt) {
-
-//     if (evt.keyCode === 13 && setupClose.focus) {
-//       setup.classList.add("hidden");
-//     }
-
-// });
- // setuoClose.addEventListener('keydown', function(evt) {
-
-//   if (evt.keyCode === 27) {
+// document.addEventListener('keydown', function(evt) {
+//   // setup.classList.contains('.hidden') &&
+//   if (evt.code === "Enter" && setupUserName !== setupUserName.activeElement ) {
+//     setup.classList.add("hidden");
 
 //   }
 // });
+
+const setupFireballWrap = document.querySelector('.setup-fireball-wrap');
+const fireballColors = ['#ee4830',  '#30a8ee',  '#5ce6c0',  '#e848d5',  '#e6e848'];
+const setupWizard = document.querySelector('.setup-wizard ');
+const wizardEyes = setupWizard.querySelector('.wizard-eyes');
+const wizardCoat = setupWizard.querySelector('.wizard-coat');
+
+wizardCoat.addEventListener('click', function() {
+    wizardCoat.style.fill = getRandomItem(coatColors)
+});
+
+wizardEyes.addEventListener('click', function() {
+  wizardEyes.style.fill = getRandomItem(eyesColors)
+});
+
+setupFireballWrap.addEventListener('click', function() {
+  setupFireballWrap.style.backgroundColor = getRandomItem(fireballColors);
+})
