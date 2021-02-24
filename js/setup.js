@@ -1,8 +1,8 @@
 const setup = document.querySelector('.setup');
 const namesWizard = ['Иван', 'Хуан', 'Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 const surnames = [ 'да Марья',  'Верон',  'Мирабелла',  'Вальц',  'Онопко',  'Топольницкая',  'Нионго',  'Ирвинг'];
-const coatColors = ['rgb(101, 137, 164)',  'rgb(241, 43, 107)',  'rgb(146, 100, 161)',  'rgb(56, 159, 117)',  'rgb(215, 210, 55)',  'rgb(0, 0, 0)'];
-const eyesColors = ['black',  'red',  'blue',  'yellow',  'green'];
+const coatColors = ['rgb(101, 137, 164)',  'rgb(241, 43, 107)',  'rgb(146, 100, 161)',  'rgb(56, 159, 117)',  'rgb(215, 210, 55)',  'rgb(0, 0, 0)', 'rgb(219,219,219)', 'rgb(219,0,0)', 'rgb(46,113,164)' ];
+const eyesColors = ['black',  'red',  'blue',  'yellow',  'green', 'coral', 'dark-pink', 'brown'];
 
 const getRandomItem = function(arr) {
   const randomIndex = random_integer(1, arr.length - 1);
@@ -64,46 +64,52 @@ setupUserName.oninput = function (){
 const setupWizardForm = document.querySelector('.setup-wizard-form');
 setupWizardForm.setAttribute('action', 'https://21.javascript.pages.academy/code-and-magick');
 setupWizardForm.action = 'https://21.javascript.pages.academy/code-and-magick';
-
+//Если диалог открыт, нажатие на кнопку «Сохранить» приводит к отправке формы.
 setupSubmit.addEventListener('click', function () {
   setupWizardForm.submit();
 });
-
+//Если диалог открыт и фокус находится на кнопке «Сохранить», нажатие на ENTER приводит к отправке формы.
 document.addEventListener('keydown', function(evt){
   if (evt.code === "Enter" && setupSubmit.activeElement) {
     setupWizardForm.submit();
-    console.log(55);
   }
 });
 
+//Когда иконка пользователя в фокусе .setup-open-icon, то окно настройки персонажа должно открываться по нажатию кнопки ENTER
 
-setupClose.setAttribute('tabindex', 1)
+const setupOpenIcon = document.querySelector('.setup-open-icon');
+setupOpenIcon.setAttribute('tabindex', '0')
+document.addEventListener('keydown', function(evt){
+ if (evt.code === 'Enter' && setupOpenIcon.activeElement) {
+  setup.classList.remove('hidden');
+ }
+});
 
-//Когда окно настройки персонажа открыто, нажатие на клавишу ESC должно закрывать диалог.
+// Когда окно настройки персонажа открыто, нажатие на клавишу ESC должно закрывать диалог.
 document.addEventListener('keydown', function(evt) {
-  if (evt.code === "Escape"/* && setupUserName !== setupUserName.oninput*/) {
+  if (evt.code === "Escape" /*&& !setupUserName.activeElement*/) {
     setup.classList.add("hidden");
     // console.log('1')
   } else {
-    // console.log('2')
-    // setup.classList.add("hidden");
+
   }
 });
 
-// setupClose == setupClose.focus()
-// document.addEventListener('keydown', function(evt) {
-//   // setup.classList.contains('.hidden') &&
-//   if (evt.code === "Enter" && setupUserName !== setupUserName.activeElement ) {
-//     setup.classList.add("hidden");
+//Если окно открыто и фокус находится на кнопке закрытия окна, то нажатие клавиши ENTER должно приводить к закрытию диалога.
+setupClose.setAttribute('type', 'button');
+setupClose.setAttribute('tabindex', '0');
+document.addEventListener('keydown', function(evt) {
+  if (evt.code === "Enter"/* && setupClose.focus()*/ ) {
+    setup.classList.add("hidden");
 
-//   }
-// });
+  }
+});
 
 
 
 
 const setupFireballWrap = document.querySelector('.setup-fireball-wrap');
-const fireballColors = ['#ee4830',  '#30a8ee',  '#5ce6c0',  '#e848d5',  '#e6e848'];
+const fireballColors = ['#ee4830', '#ee4830', '#30a8ee',  '#5ce6c0',  '#e848d5',  '#e6e848', '#E87B2D', '#741D0E', '#D3BABA'];
 const setupWizard = document.querySelector('.setup-wizard ');
 const wizardEyes = setupWizard.querySelector('.wizard-eyes');
 const wizardCoat = setupWizard.querySelector('.wizard-coat');

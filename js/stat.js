@@ -1,4 +1,3 @@
-
 const cloud_width = 420;
 const cloud_height = 270;
 const cloud_x = 100;
@@ -69,7 +68,6 @@ const render_column = function(ctx, names, times) {
     ctx.fillText(times[i], time_x, time_y);
   };
 }
-
 
 //getMaxValue
 const get_max_value = function(value){
