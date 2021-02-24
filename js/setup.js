@@ -60,23 +60,37 @@ setupUserName.oninput = function (){
   }
 
 };
-// setupClose.addEventListener('focus', function(evt){
-//   if (evt.code === "Enter") {
-//       setup.classList.add("hidden");
-//     }
-// })
-setupClose.setAttribute('tabindex', 1)
 
+const setupWizardForm = document.querySelector('.setup-wizard-form');
+setupWizardForm.setAttribute('action', 'https://21.javascript.pages.academy/code-and-magick');
+setupWizardForm.action = 'https://21.javascript.pages.academy/code-and-magick';
 
-document.addEventListener('keydown', function(evt) {
-  if (evt.code === "Enter" && setupClose == setupClose.focus() ) {
-    setup.classList.add("hidden");
-  } else {
-    console.log('gfgf')
+setupSubmit.addEventListener('click', function () {
+  setupWizardForm.submit();
+});
+
+document.addEventListener('keydown', function(evt){
+  if (evt.code === "Enter" && setupSubmit.activeElement) {
+    setupWizardForm.submit();
+    console.log(55);
   }
 });
 
 
+setupClose.setAttribute('tabindex', 1)
+
+//Когда окно настройки персонажа открыто, нажатие на клавишу ESC должно закрывать диалог.
+document.addEventListener('keydown', function(evt) {
+  if (evt.code === "Escape"/* && setupUserName !== setupUserName.oninput*/) {
+    setup.classList.add("hidden");
+    // console.log('1')
+  } else {
+    // console.log('2')
+    // setup.classList.add("hidden");
+  }
+});
+
+// setupClose == setupClose.focus()
 // document.addEventListener('keydown', function(evt) {
 //   // setup.classList.contains('.hidden') &&
 //   if (evt.code === "Enter" && setupUserName !== setupUserName.activeElement ) {
@@ -84,6 +98,9 @@ document.addEventListener('keydown', function(evt) {
 
 //   }
 // });
+
+
+
 
 const setupFireballWrap = document.querySelector('.setup-fireball-wrap');
 const fireballColors = ['#ee4830',  '#30a8ee',  '#5ce6c0',  '#e848d5',  '#e6e848'];
