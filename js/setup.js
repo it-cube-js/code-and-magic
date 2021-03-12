@@ -1,7 +1,7 @@
 const setup = document.querySelector('.setup');
 const namesWizard = ['Иван', 'Хуан', 'Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 const surnames = [ 'да Марья',  'Верон',  'Мирабелла',  'Вальц',  'Онопко',  'Топольницкая',  'Нионго',  'Ирвинг'];
-const coatColors = ['rgb(101, 137, 164)',  'rgb(241, 43, 107)',  'rgb(146, 100, 161)',  'rgb(56, 159, 117)',  'rgb(215, 210, 55)',  'rgb(0, 0, 0)', 'rgb(219,219,219)', 'rgb(219,0,0)', 'rgb(46,113,164)' ];
+const coatColors = ['rgb(101, 137, 164)',  'rgb(241, 43, 107)',  'rgb(146, 100, 161)',  'rgb(56, 159, 117)',  'rgb(215, 210, 55)',  'rgb(0, 0, 0)', 'rgb(219,219,219)', 'rgb(219,0,0)', 'rgb(211,167,167)', 'rgb(46,113,164)' ];
 const eyesColors = ['black',  'red',  'blue',  'yellow',  'green', 'coral', 'dark-pink', 'brown'];
 
 const getRandomItem = function(arr) {
@@ -80,26 +80,28 @@ document.addEventListener('keydown', function(evt){
 const setupOpenIcon = document.querySelector('.setup-open-icon');
 setupOpenIcon.setAttribute('tabindex', '0')
 document.addEventListener('keydown', function(evt){
- if (evt.code === 'Enter' && setupOpenIcon.activeElement) {
+ if (evt.code === 'Enter' && setupOpenIcon.activeElement ) {
   setup.classList.remove('hidden');
  }
 });
 
 // Когда окно настройки персонажа открыто, нажатие на клавишу ESC должно закрывать диалог.
 document.addEventListener('keydown', function(evt) {
-  if (evt.code === "Escape" /*&& !setupUserName.activeElement*/) {
+  if (evt.code === "Escape" && !setupUserName.activeElement) {
     setup.classList.add("hidden");
     // console.log('1')
   } else {
 
   }
 });
+const setupTitle = document.querySelector('.setup-title')
+const focusClose = setupTitle.querySelector('setup-close:focus');
 
 //Если окно открыто и фокус находится на кнопке закрытия окна, то нажатие клавиши ENTER должно приводить к закрытию диалога.
 setupClose.setAttribute('type', 'button');
 setupClose.setAttribute('tabindex', '0');
 document.addEventListener('keydown', function(evt) {
-  if (evt.code === "Enter"/* && setupClose.focus()*/ ) {
+  if (evt.code === "Enter" && focusClose.focus() ) {
     setup.classList.add("hidden");
 
   }
@@ -124,4 +126,7 @@ wizardEyes.addEventListener('click', function() {
 
 setupFireballWrap.addEventListener('click', function() {
   setupFireballWrap.style.backgroundColor = getRandomItem(fireballColors);
-})
+});
+
+
+

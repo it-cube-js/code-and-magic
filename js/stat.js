@@ -64,7 +64,7 @@ const render_column = function(ctx, names, times) {
     ctx.fillStyle = 'black';
     const time_x = rect_x;
     const time_y = rect_y - text_size / 2;
-    times[i] = Math.floor(times[i])
+    times[i] = Math.floor(times[i]);
     ctx.fillText(times[i], time_x, time_y);
   };
 }
@@ -72,12 +72,12 @@ const render_column = function(ctx, names, times) {
 //getMaxValue
 const get_max_value = function(value){
   let max = value[0];
-for (let i = 0; i < value.length; i++) {
+  for (let i = 0; i < value.length; i++) {
 
-  if (max < value[i]) {
-    max = value[i];
+    if (max < value[i]) {
+      max = value[i];
+    }
   }
-}
 return max;
 }
 
