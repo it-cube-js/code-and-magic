@@ -1,15 +1,15 @@
-const cloud_width = 420;
-const cloud_height = 270;
-const cloud_x = 100;
-const cloud_y = 10;
-const cloud_gap = 10;
+// const cloud_width = 420;
+// const cloud_height = 270;
+// const cloud_x = 100;
+// const cloud_y = 10;
+// const cloud_gap = 10;
 
-const text_size = 16;
-const text_gap = 10;
+// const text_size = 16;
+// const text_gap = 10;
 
-const column_height = 150;
-const column_width = 40;
-const column_gap = 50;
+// const column_height = 150;
+// const column_width = 40;
+// const column_gap = 50;
 
 window.renderStatistics = function(ctx, names, times) {
   render_cloud(ctx);
@@ -35,10 +35,10 @@ const render_vitory_text = function(ctx) {
   ctx.fillText("Список результатов:", text_x, text_y + text_gap * 2);
 };
 
-function random_integer(min, max) {
-  let rand = min - 0.5 + Math.random() * (max - min + 1);
-  return Math.round(rand);
-}
+// function random_integer(min, max) {
+//   let rand = min - 0.5 + Math.random() * (max - min + 1);
+//   return Math.round(rand);
+// }
 
 const render_column = function(ctx, names, times) {
   const column_start_x = cloud_x;
@@ -64,22 +64,22 @@ const render_column = function(ctx, names, times) {
     ctx.fillStyle = 'black';
     const time_x = rect_x;
     const time_y = rect_y - text_size / 2;
-    times[i] = Math.floor(times[i]);
+    times[i] = Math.floor(times[i])
     ctx.fillText(times[i], time_x, time_y);
   };
 }
 
 //getMaxValue
-const get_max_value = function(value){
-  let max = value[0];
-  for (let i = 0; i < value.length; i++) {
+// const get_max_value = function(value){
+//   let max = value[0];
+// for (let i = 0; i < value.length; i++) {
 
-    if (max < value[i]) {
-      max = value[i];
-    }
-  }
-return max;
-}
+//   if (max < value[i]) {
+//     max = value[i];
+//   }
+// }
+// return max;
+// }
 
 
 
