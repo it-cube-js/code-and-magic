@@ -19,4 +19,4 @@ const column_gap = 50;
 
 console.log('data.js = = == = =');
 
-// import from "js/main.js"
+export {namesWizard, surnames, coatColors, eyesColors, fireballColors, cloud_width, cloud_height, cloud_x, cloud_y, cloud_gap, text_size, text_gap, column_height, column_width, column_gap};

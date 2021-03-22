@@ -18,3 +18,5 @@ function random_integer(min, max) {
   let rand = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(rand);
 }
+
+export { getRandomItem, get_max_value, random_integer };
