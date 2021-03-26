@@ -1,7 +1,7 @@
 import {getRandomItem} from "./util.js";
 import {generateWizards} from "./data.js";
-import {coatColors} from "./data.js";
-
+// import {coatColors} from "./data.js";
+import {getRandomCoatColor} from './data.js'
 const setup = document.querySelector('.setup');
 
 const dataWizards = generateWizards(4);
@@ -116,7 +116,7 @@ const setupWizard = document.querySelector('.setup-wizard ');
 const wizardEyes = setupWizard.querySelector('.wizard-eyes');
 const wizardCoat = setupWizard.querySelector('.wizard-coat');
 
-import {getRandomCoatColor} from './js/data.js'
+
 
 wizardCoat.addEventListener('click', function() {
     wizardCoat.style.fill = getRandomCoatColor();
