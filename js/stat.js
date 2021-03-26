@@ -1,15 +1,15 @@
-// const cloud_width = 420;
-// const cloud_height = 270;
-// const cloud_x = 100;
-// const cloud_y = 10;
-// const cloud_gap = 10;
+const cloud_width = 420;
+const cloud_height = 270;
+const cloud_x = 100;
+const cloud_y = 10;
+const cloud_gap = 10;
 
-// const text_size = 16;
-// const text_gap = 10;
+const text_size = 16;
+const text_gap = 10;
 
-// const column_height = 150;
-// const column_width = 40;
-// const column_gap = 50;
+const column_height = 150;
+const column_width = 40;
+const column_gap = 50;
 
 window.renderStatistics = function(ctx, names, times) {
   render_cloud(ctx);

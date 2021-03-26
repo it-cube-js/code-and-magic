@@ -1,4 +1,11 @@
+import {getRandomItem} from "./util.js";
+import {generateWizards} from "./data.js";
+import {coatColors} from "./data.js";
+
 const setup = document.querySelector('.setup');
+
+const dataWizards = generateWizards(4);
+
 // const namesWizard = ['Иван', 'Хуан', 'Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 // const surnames = [ 'да Марья',  'Верон',  'Мирабелла',  'Вальц',  'Онопко',  'Топольницкая',  'Нионго',  'Ирвинг'];
 // const coatColors = ['rgb(101, 137, 164)',  'rgb(241, 43, 107)',  'rgb(146, 100, 161)',  'rgb(56, 159, 117)',  'rgb(215, 210, 55)',  'rgb(0, 0, 0)', 'rgb(219,219,219)', 'rgb(219,0,0)', 'rgb(46,113,164)' ];
@@ -9,39 +16,34 @@ const setup = document.querySelector('.setup');
 //   return arr[randomIndex];
 // }
 
-const generateWizard = () => ({
-  name: getRandomItem(namesWizard) + " " + getRandomItem(surnames),
-  coatColor: getRandomItem(coatColors),
-  eyesColor: getRandomItem(eyesColors)
-});
 
-const generateWizards = function(numb) {
-  const arr = [];
-  for(let i = 0; i < numb; i++) {
-    arr.push(generateWizard())
-  }
-  return arr;
-}
 const setupSimilar = document.querySelector('.setup-similar').classList.remove("hidden");
 
 const template = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 const similarList = document.querySelector('.setup-similar-list');
 
-const getWizardsForPlayer = function(generate) {
+const createWizardElement = (obj) => {
+  const wizard = template.cloneNode(true);
+  wizard.querySelector('.setup-similar-label').textContent = obj.name;
+  wizard.querySelector('.wizard-coat').style.fill = obj.coatColor;
+  wizard.querySelector('.wizard-eyes').style.fill = obj.eyesColor;
 
-  for(let i = 0; i < generate.length; i++){
-    const wizard = template.cloneNode(true);
-    wizard.querySelector('.setup-similar-label').textContent = generate[i].name;
-    wizard.querySelector('.wizard-coat').style.fill = generate[i].coatColor;
-    wizard.querySelector('.wizard-eyes').style.fill = generate[i].eyesColor;
-    similarList.appendChild(wizard);
+  return wizard;
+}
+
+const drawWizards = function(arr) {
+  for(let i = 0; i < arr.length; i++){
+    const element = createWizardElement(arr[i]);
+    similarList.appendChild(element);
   }
 };
-console.log(getWizardsForPlayer(generateWizards(4)));
 
 const setupOpen = document.querySelector('.setup-open');
 setupOpen.addEventListener('click', function () {
   setup.classList.remove("hidden");
+  similarList.innerHTML = '';
+  drawWizards(dataWizards);
+
 });
 
 const setupClose = document.querySelector('.setup-close');
@@ -114,8 +116,10 @@ const setupWizard = document.querySelector('.setup-wizard ');
 const wizardEyes = setupWizard.querySelector('.wizard-eyes');
 const wizardCoat = setupWizard.querySelector('.wizard-coat');
 
+import {getRandomCoatColor} from './js/data.js'
+
 wizardCoat.addEventListener('click', function() {
-    wizardCoat.style.fill = getRandomItem(coatColors)
+    wizardCoat.style.fill = getRandomCoatColor();
 });
 
 wizardEyes.addEventListener('click', function() {
