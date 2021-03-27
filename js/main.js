@@ -1,6 +1,6 @@
 // import "./util.js";
 // import "./data.js";
-
+import "./stat.js"
 import "./setup.js";
 
 // import { namesWizard, surnames, coatColors, eyesColors, fireballColors, cloud_width, cloud_height, cloud_x, cloud_y, cloud_gap, text_size, text_gap, column_height, column_width, column_gap } from "./data.js"

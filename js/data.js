@@ -22,6 +22,11 @@ const generateWizards = function(numb) {
 const getRandomCoatColor = () => {
   return getRandomItem(coatColors);
 }
+const getRandomEyesColor = () => {
+  return getRandomItem(eyesColors);
+}
+const getRandomFireballColor = () => {
+  return getRandomItem(fireballColors);
+}
 
-
-export {generateWizards, namesWizard, surnames, getRandomCoatColor, eyesColors, fireballColors};
+export {generateWizards, namesWizard, surnames, getRandomCoatColor, getRandomEyesColor, getRandomFireballColor};

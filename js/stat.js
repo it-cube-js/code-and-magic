@@ -1,3 +1,5 @@
+import {get_max_value, random_integer} from "./util.js"
+
 const cloud_width = 420;
 const cloud_height = 270;
 const cloud_x = 100;

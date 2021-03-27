@@ -1,7 +1,7 @@
 import {getRandomItem} from "./util.js";
 import {generateWizards} from "./data.js";
 // import {coatColors} from "./data.js";
-import {getRandomCoatColor} from './data.js'
+import {getRandomCoatColor, getRandomEyesColor, getRandomFireballColor} from './data.js'
 const setup = document.querySelector('.setup');
 
 const dataWizards = generateWizards(4);
@@ -123,9 +123,9 @@ wizardCoat.addEventListener('click', function() {
 });
 
 wizardEyes.addEventListener('click', function() {
-  wizardEyes.style.fill = getRandomItem(eyesColors)
+  wizardEyes.style.fill = getRandomEyesColor();
 });
 
 setupFireballWrap.addEventListener('click', function() {
-  setupFireballWrap.style.backgroundColor = getRandomItem(fireballColors);
+  setupFireballWrap.style.backgroundColor = getRandomFireballColor();
 })
