@@ -64,6 +64,7 @@ setupUserName.oninput = function (){
 };
 
 const setupWizardForm = document.querySelector('.setup-wizard-form');
+export {setup}
 setupWizardForm.setAttribute('action', 'https://21.javascript.pages.academy/code-and-magick');
 setupWizardForm.action = 'https://21.javascript.pages.academy/code-and-magick';
 //Если диалог открыт, нажатие на кнопку «Сохранить» приводит к отправке формы.

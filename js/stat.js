@@ -54,10 +54,12 @@ const render_column = function(ctx, names, times) {
       if (names[i] == 'Вы') {
         ctx.fillStyle = 'rgba(255, 0, 0, 1)';
       } else {
-        ctx.fillStyle = 'hsl(240, ' + random_integer(1, 100) + '%, 50%)';
+        ctx.fillStyle = 'hsl(240, ' + random_integer(1, 100) + '%,' + random_integer(45, 55) + '%)';
       }
 
-    column_number_height = column_height / get_max_value(times) * times[i];
+
+
+     const column_number_height = column_height / get_max_value(times) * times[i];
 
     const rect_x = text_x;
     const rect_y = column_start_y - text_size - column_number_height;
