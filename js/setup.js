@@ -64,17 +64,26 @@ setupUserName.oninput = function (){
 };
 
 const setupWizardForm = document.querySelector('.setup-wizard-form');
-export {setup}
-setupWizardForm.setAttribute('action', 'https://21.javascript.pages.academy/code-and-magick');
-setupWizardForm.action = 'https://21.javascript.pages.academy/code-and-magick';
+console.log(setupWizardForm)
+
+// setupWizardForm.action = 'https://21.javascript.pages.academy/code-and-magick';
+// setupWizardForm.addEventListener('submit', function(evt) {
+//   evt.preventDefault();
+// })
 //Если диалог открыт, нажатие на кнопку «Сохранить» приводит к отправке формы.
-setupSubmit.addEventListener('click', function () {
-  setupWizardForm.submit();
+setupSubmit.addEventListener('click', function (evt) {
+  evt.preventDefault();
+  // setupWizardForm.submit();
+
+  setup.classList.add('hidden');
+
 });
 //Если диалог открыт и фокус находится на кнопке «Сохранить», нажатие на ENTER приводит к отправке формы.
 document.addEventListener('keydown', function(evt){
   if (evt.code === "Enter" && setupSubmit.activeElement) {
     setupWizardForm.submit();
+    evt.preventDefault();
+
   }
 });
 
@@ -130,3 +139,6 @@ wizardEyes.addEventListener('click', function() {
 setupFireballWrap.addEventListener('click', function() {
   setupFireballWrap.style.backgroundColor = getRandomFireballColor();
 })
+
+
+export {setup}

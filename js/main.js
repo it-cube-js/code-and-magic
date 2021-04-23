@@ -3,3 +3,5 @@
 import "./stat.js"
 import "./setup.js";
 import "./dialog.js"
+import "./fetch"
+
