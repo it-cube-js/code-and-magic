@@ -1,10 +1,22 @@
 import {getRandomItem} from "./util.js";
-import {generateWizards} from "./data.js";
+// import {generateWizards} from "./data.js";
 // import {coatColors} from "./data.js";
-import {getRandomCoatColor, getRandomEyesColor, getRandomFireballColor} from './data.js'
+import {getData as getDataFromServer} from './server.js'
+// import {getRandomCoatColor, getRandomEyesColor, getRandomFireballColor} from './data.js'
 const setup = document.querySelector('.setup');
 
-const dataWizards = generateWizards(4);
+
+const onSuccess = function(data) {
+  //отрендерить
+  createWizardElement(data[{}])
+  console.log('onSuccess', data);
+}
+
+const onError = function(error) {
+  console.log(error);
+}
+getDataFromServer(onSuccess, onError);
+// const dataWizards = generateWizards(4);
 
 // const namesWizard = ['Иван', 'Хуан', 'Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 // const surnames = [ 'да Марья',  'Верон',  'Мирабелла',  'Вальц',  'Онопко',  'Топольницкая',  'Нионго',  'Ирвинг'];
@@ -42,7 +54,7 @@ const setupOpen = document.querySelector('.setup-open');
 setupOpen.addEventListener('click', function () {
   setup.classList.remove("hidden");
   similarList.innerHTML = '';
-  drawWizards(dataWizards);
+  // drawWizards(dataWizards);
 
 });
 
@@ -64,7 +76,7 @@ setupUserName.oninput = function (){
 };
 
 const setupWizardForm = document.querySelector('.setup-wizard-form');
-console.log(setupWizardForm)
+// console.log(setupWizardForm)
 
 // setupWizardForm.action = 'https://21.javascript.pages.academy/code-and-magick';
 // setupWizardForm.addEventListener('submit', function(evt) {
