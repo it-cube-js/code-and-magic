@@ -1,32 +1,32 @@
-import {getRandomItem} from "./util.js";
-// import {generateWizards} from "./data.js";
+import {getRandomItem, random_integer} from "./util.js";
+import {generateWizards} from "./data.js";
 // import {coatColors} from "./data.js";
 import {getData as getDataFromServer} from './server.js'
-// import {getRandomCoatColor, getRandomEyesColor, getRandomFireballColor} from './data.js'
+import {getRandomCoatColor, getRandomEyesColor, getRandomFireballColor} from './data.js'
 const setup = document.querySelector('.setup');
 
+// let dataServer
 
 const onSuccess = function(data) {
+  // dataServer = data
+  let dataForDraw = []
+
   //отрендерить
-  createWizardElement(data[{}])
+  // createWizardElement(objServerTemplate)
   console.log('onSuccess', data);
+  for(let i = 0; i < 4; i++) {
+    dataForDraw.push(data[random_integer(0, data.length - 1)])
+  }
+
+  drawWizards(dataForDraw)
 }
 
 const onError = function(error) {
   console.log(error);
+
 }
-getDataFromServer(onSuccess, onError);
+
 // const dataWizards = generateWizards(4);
-
-// const namesWizard = ['Иван', 'Хуан', 'Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-// const surnames = [ 'да Марья',  'Верон',  'Мирабелла',  'Вальц',  'Онопко',  'Топольницкая',  'Нионго',  'Ирвинг'];
-// const coatColors = ['rgb(101, 137, 164)',  'rgb(241, 43, 107)',  'rgb(146, 100, 161)',  'rgb(56, 159, 117)',  'rgb(215, 210, 55)',  'rgb(0, 0, 0)', 'rgb(219,219,219)', 'rgb(219,0,0)', 'rgb(46,113,164)' ];
-// const eyesColors = ['black',  'red',  'blue',  'yellow',  'green', 'coral', 'dark-pink', 'brown'];
-
-// const getRandomItem = function(arr) {
-//   const randomIndex = random_integer(1, arr.length - 1);
-//   return arr[randomIndex];
-// }
 
 
 const setupSimilar = document.querySelector('.setup-similar').classList.remove("hidden");
@@ -37,13 +37,14 @@ const similarList = document.querySelector('.setup-similar-list');
 const createWizardElement = (obj) => {
   const wizard = template.cloneNode(true);
   wizard.querySelector('.setup-similar-label').textContent = obj.name;
-  wizard.querySelector('.wizard-coat').style.fill = obj.coatColor;
-  wizard.querySelector('.wizard-eyes').style.fill = obj.eyesColor;
+  wizard.querySelector('.wizard-coat').style.fill = obj.colorCoat;
+  wizard.querySelector('.wizard-eyes').style.fill = obj.colorEyes;
 
   return wizard;
 }
 
 const drawWizards = function(arr) {
+  console.log('true')
   for(let i = 0; i < arr.length; i++){
     const element = createWizardElement(arr[i]);
     similarList.appendChild(element);
@@ -52,9 +53,10 @@ const drawWizards = function(arr) {
 
 const setupOpen = document.querySelector('.setup-open');
 setupOpen.addEventListener('click', function () {
+  getDataFromServer(onSuccess, onError);
   setup.classList.remove("hidden");
   similarList.innerHTML = '';
-  // drawWizards(dataWizards);
+  // drawWizards(dataServer);
 
 });
 
