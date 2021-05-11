@@ -15,3 +15,7 @@ export const getData = function(onSuccess, onError){
   })
   .catch(onError)
 }
+
+export const loadData = function(data, onSuccess, onError){
+
+}

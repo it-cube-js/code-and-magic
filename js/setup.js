@@ -1,18 +1,18 @@
 import {getRandomItem, random_integer} from "./util.js";
 import {generateWizards} from "./data.js";
 // import {coatColors} from "./data.js";
-import {getData as getDataFromServer} from './server.js'
+import {getData as getDataFromServer, loadData} from './server.js'
 import {getRandomCoatColor, getRandomEyesColor, getRandomFireballColor} from './data.js'
 const setup = document.querySelector('.setup');
 
 // let dataServer
+let dataForDraw = []
 
 const onSuccess = function(data) {
-  // dataServer = data
-  let dataForDraw = []
+  dataForDraw = data;
+  updateWizards();
+  displayWizards(sorted.slice(0, 4));
 
-  //отрендерить
-  // createWizardElement(objServerTemplate)
   console.log('onSuccess', data);
   for(let i = 0; i < 4; i++) {
     dataForDraw.push(data[random_integer(0, data.length - 1)])
@@ -27,7 +27,37 @@ const onError = function(error) {
 }
 
 // const dataWizards = generateWizards(4);
+let colorEyes = '';
+let colorCoat = '';
+const calcWeight = (obj) => {
+  let weight = 0;
+  if (obj.colorCoat === colorCoat) {
+    weight += 1;
+  }
+  if (obj.colorEyes === colorEyes) {
+    weight += 1;
+  }
+  return weight;
+}
 
+const displayWizards = (arr) => {
+  similarList.innerHTML = '';
+  for (let i = 0; i < arr.length; i += 1) {
+    similarList.appendChild(createWizardElement(arr[i]));
+  }
+}
+
+const updateWizards = () => {
+
+  const sorted = dataForDraw.slice(0).sort(function(a, b) {
+    const weightA = calcWeight(a);
+    const weightB = calcWeight(b);
+
+    return weightB - weightA;
+  });
+
+  displayWizards(sorted.slice(0, 4));
+}
 
 const setupSimilar = document.querySelector('.setup-similar').classList.remove("hidden");
 
@@ -44,7 +74,6 @@ const createWizardElement = (obj) => {
 }
 
 const drawWizards = function(arr) {
-  console.log('true')
   for(let i = 0; i < arr.length; i++){
     const element = createWizardElement(arr[i]);
     similarList.appendChild(element);
@@ -78,7 +107,6 @@ setupUserName.oninput = function (){
 };
 
 const setupWizardForm = document.querySelector('.setup-wizard-form');
-// console.log(setupWizardForm)
 
 // setupWizardForm.action = 'https://21.javascript.pages.academy/code-and-magick';
 // setupWizardForm.addEventListener('submit', function(evt) {
@@ -92,11 +120,29 @@ setupSubmit.addEventListener('click', function (evt) {
   setup.classList.add('hidden');
 
 });
+
+const onLoadSuccess = () => {
+  console.log();
+  }
+
+ const onLoadError = () => {
+    console.log(90);
+  }
+
+setupWizardForm.addEventListener('submit', function(evt){
+  evt.preventDefault();
+  const dataForm = new FormData(setupWizardForm);
+loadData(dataForm, onLoadSuccess, onLoadError)
+
+})
+
+
+
 //Если диалог открыт и фокус находится на кнопке «Сохранить», нажатие на ENTER приводит к отправке формы.
 document.addEventListener('keydown', function(evt){
   if (evt.code === "Enter" && setupSubmit.activeElement) {
     setupWizardForm.submit();
-    evt.preventDefault();
+    // evt.preventDefault();
 
   }
 });
@@ -143,11 +189,19 @@ const wizardCoat = setupWizard.querySelector('.wizard-coat');
 
 
 wizardCoat.addEventListener('click', function() {
-    wizardCoat.style.fill = getRandomCoatColor();
+    // wizardCoat.style.fill = getRandomCoatColor();
+    // const color = getRandomEyesColor();
+    colorCoat = getRandomCoatColor();
+    wizardCoat.style.fill = colorCoat;
+    updateWizards();
 });
 
 wizardEyes.addEventListener('click', function() {
-  wizardEyes.style.fill = getRandomEyesColor();
+  // wizardEyes.style.fill = getRandomEyesColor();
+  const color = getRandomEyesColor();
+  colorEyes = color;
+  wizardEyes.style.fill =  color;
+  updateWizards();
 });
 
 setupFireballWrap.addEventListener('click', function() {
