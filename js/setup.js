@@ -22,7 +22,7 @@ const onSuccess = function(data) {
 }
 
 const onError = function(error) {
-  console.log(error);
+  // console.log(error);
 
 }
 
@@ -121,21 +121,23 @@ setupSubmit.addEventListener('click', function (evt) {
 
 });
 
-const onLoadSuccess = () => {
-  console.log();
+const onLoadSuccess = (res) => {
+  console.log('load');
   }
+  const errorList = document.querySelector('.error-list');
 
- const onLoadError = () => {
-    console.log(90);
+ const onLoadError = (res) => {
+    console.log('noload');
+    errorList.textContent = $`произошла ошибка:  ${res}`
+    errorList.classList.remove('hidden')
   }
 
 setupWizardForm.addEventListener('submit', function(evt){
   evt.preventDefault();
   const dataForm = new FormData(setupWizardForm);
-loadData(dataForm, onLoadSuccess, onLoadError)
+loadData(dataForm, onLoadSuccess, onLoadError);
 
 })
-
 
 
 //Если диалог открыт и фокус находится на кнопке «Сохранить», нажатие на ENTER приводит к отправке формы.

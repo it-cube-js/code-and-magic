@@ -17,5 +17,7 @@ export const getData = function(onSuccess, onError){
 }
 
 export const loadData = function(data, onSuccess, onError){
-
+  const promise = fetch('https://22.javascript.pages.academy/code-and-magick', data);
+return promise.then(onSuccess)
+.catch(onError)
 }

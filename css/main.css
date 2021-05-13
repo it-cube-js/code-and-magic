@@ -1047,7 +1047,7 @@ input[type=radio]:checked + .review-mark-label
    color: white;
    position: absolute;
    left: 20%;
-
+   font-size: 20px;
    top: 10px;
    width: 60%;
    height: 60px;
