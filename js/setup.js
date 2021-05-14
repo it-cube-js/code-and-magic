@@ -113,23 +113,31 @@ const setupWizardForm = document.querySelector('.setup-wizard-form');
 //   evt.preventDefault();
 // })
 //Если диалог открыт, нажатие на кнопку «Сохранить» приводит к отправке формы.
-setupSubmit.addEventListener('click', function (evt) {
-  evt.preventDefault();
-  // setupWizardForm.submit();
+// setupSubmit.addEventListener('click', function (evt) {
+//   // evt.preventDefault();
+//   // setupWizardForm.submit();
 
-  setup.classList.add('hidden');
+//   // setup.classList.add('hidden');
 
-});
+// });
 
 const onLoadSuccess = (res) => {
-  console.log('load');
+  // console.log('load', res);
+  if (res.status == 200){
+    setup.classList.add('hidden');
+
+  } else {
+    onLoadError(res)
+  }
+
   }
   const errorList = document.querySelector('.error-list');
 
  const onLoadError = (res) => {
-    console.log('noload');
-    errorList.textContent = $`произошла ошибка:  ${res}`
-    errorList.classList.remove('hidden')
+    console.log('noload', res);
+    errorList.classList.remove('hidden');
+    errorList.textContent = `произошла ошибка:  ${res.status} ${res.statusText}`
+
   }
 
 setupWizardForm.addEventListener('submit', function(evt){
