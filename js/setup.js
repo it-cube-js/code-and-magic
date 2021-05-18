@@ -125,6 +125,7 @@ const onLoadSuccess = (res) => {
   // console.log('load', res);
   if (res.status == 200){
     setup.classList.add('hidden');
+    errorList.classList.add('hidden');
 
   } else {
     onLoadError(res)
